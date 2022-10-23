@@ -1,0 +1,7 @@
+{
+    "apps": [{
+        "name": "layla",
+        "script": "./run.py",
+        "interpreter": "python3.10"
+    }]
+}
