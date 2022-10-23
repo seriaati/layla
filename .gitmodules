@@ -1,0 +1,3 @@
+[submodule "hmtai_async"]
+	path = hmtai_async
+	url = https://github.com/seriaati/hmtai_async
