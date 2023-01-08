@@ -86,7 +86,7 @@ class WaifuCog(commands.GroupCog, name="waifu"):
                 many_var = True if many > 1 else False
                 images = await wf.search(
                     is_nsfw=is_nsfw,
-                    selected_tags=view.tags[0] if tags == 1 else [],
+                    included_tags=view.tags[0] if tags == 1 else [],
                     many=many_var,
                 )
             except waifuim.exceptions.APIException:
