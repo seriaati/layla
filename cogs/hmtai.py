@@ -5,7 +5,7 @@ from discord import app_commands
 from discord.app_commands import locale_str as _T
 from discord.ext import commands
 
-from dev.model import BotModel, ErrorEmbed
+from dev.model import BotModel, DefaultEmbed, ErrorEmbed
 from utility.paginator import GeneralPaginator
 from utility.utils import get_json
 
@@ -45,6 +45,9 @@ class HmtaiCog(commands.GroupCog, name="hmtai"):
                     ),
                     ephemeral=True,
                 )
+            embed = DefaultEmbed()
+            embed.set_image(url=image)
+            embeds.append(embed)
 
         await GeneralPaginator(i, embeds).start(ephemeral=True, followup=True)
 
