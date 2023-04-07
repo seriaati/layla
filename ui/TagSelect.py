@@ -11,6 +11,8 @@ class TagSelectView(BaseView):
     def __init__(
         self, tags: typing.Dict[str, typing.List[str]], locale: discord.Locale
     ) -> None:
+        super().__init__()
+
         self.tags = tags
         self.selected_tags: typing.List[str] = []
         self.add_item(
