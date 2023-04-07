@@ -1,3 +1,4 @@
+import datetime
 import json
 import logging
 import typing
@@ -17,10 +18,12 @@ class ScheduleCog(commands.Cog):
     async def cog_load(self):
         self.run_tasks.start()
 
-    @tasks.loop(seconds=1)
+    @tasks.loop(hours=1)
     async def run_tasks(self):
-        await self.update_waifu_im_tags()
-        await self.update_hmtai_endpoints()
+        now = datetime.datetime.now()
+        if now.hour == 0 and now.minute == 0:
+            await self.update_waifu_im_tags()
+            await self.update_hmtai_endpoints()
 
     @run_tasks.before_loop
     async def before_run_tasks(self):
