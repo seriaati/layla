@@ -1,3 +1,4 @@
+import json
 import logging
 import typing
 
@@ -34,7 +35,7 @@ class ScheduleCog(commands.Cog):
                 return
             data: typing.Dict[str, typing.List[str]] = await resp.json()
             async with aiofiles.open(WAIFUIM_JSON, "w") as f:
-                await f.write(data)
+                await f.write(json.dumps(data))
 
         logging.info("Updated waifu.im tags.")
 
@@ -47,7 +48,7 @@ class ScheduleCog(commands.Cog):
                 return
             data: typing.Dict[str, typing.Any] = await resp.json()
             async with aiofiles.open(HMTAI_JSON, "w") as f:
-                await f.write(data)
+                await f.write(json.dumps(data))
 
         logging.info("Updated hmtai endpoints.")
 
