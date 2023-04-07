@@ -50,3 +50,7 @@ class ScheduleCog(commands.Cog):
                 await f.write(data)
 
         logging.info("Updated hmtai endpoints.")
+
+
+async def setup(bot: commands.Bot) -> None:
+    await bot.add_cog(ScheduleCog(bot))
