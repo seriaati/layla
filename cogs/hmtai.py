@@ -15,10 +15,12 @@ class HmtaiCog(commands.GroupCog, name="hmtai"):
         self.bot: BotModel = bot
 
     async def cog_load(self) -> None:
-        self.sfw_endpoints: typing.List[str] = (get_json("hmtai_endpoints.json"))["sfw"]
-        self.nsfw_endpoints: typing.List[str] = (get_json("hmtai_endpoints.json"))[
-            "nsfw"
-        ]
+        self.sfw_endpoints: typing.Optional[typing.List[str]] = get_json(
+            "hmtai_endpoints.json"
+        ).get("sfw")
+        self.nsfw_endpoints: typing.Optional[typing.List[str]] = (
+            get_json("hmtai_endpoints.json")
+        ).get("nsfw")
 
     async def get_image(self, endpoint: str) -> str:
         async with self.bot.session.get(
@@ -73,6 +75,8 @@ class HmtaiCog(commands.GroupCog, name="hmtai"):
 
     async def endpoint_autocomplete(self, tag_type: str, current: str):
         endpoints = self.sfw_endpoints if tag_type == "sfw" else self.nsfw_endpoints
+        if not endpoints:
+            return []
         return [
             app_commands.Choice(name=_T(tag), value=tag)
             for tag in endpoints
