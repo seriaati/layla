@@ -10,6 +10,7 @@ import aiohttp
 from discord import Intents
 from discord.ext import commands
 from dotenv import load_dotenv
+from waifuim import WaifuAioClient
 
 from dev.model import BotModel, translator
 
@@ -30,6 +31,7 @@ class Layla(BotModel):
             intents=Intents.default(),
         )
         self.session = session
+        self.wf = WaifuAioClient(session=session, app_name="Layla")
 
     async def on_ready(self) -> None:
         logging.info(f"Logged in as {self.user} (ID: {self.user.id})")

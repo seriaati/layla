@@ -4,6 +4,7 @@ import typing
 import aiohttp
 import discord
 from discord.ext import commands
+from waifuim import WaifuAioClient
 
 from utility.utils import get_yaml
 
@@ -11,6 +12,7 @@ from utility.utils import get_yaml
 class BotModel(commands.Bot):
     session: aiohttp.ClientSession
     user: discord.ClientUser
+    wf: WaifuAioClient
 
 
 class Inter(discord.Interaction):

@@ -66,7 +66,7 @@ class SearchImage(discord.ui.Button):
             embed=DefaultEmbed(translator.trans("Searching...", i.locale))
         )
 
-        wf = WaifuAioClient(session=i.client.session, app_name="Layla")
+        wf = i.client.wf
         try:
             images = await wf.search(self.view.selected_tags, many=True)
         except APIException:
@@ -89,5 +89,4 @@ class SearchImage(discord.ui.Button):
             embed.set_image(url=str(image))
             embeds.append(embed)
 
-        await wf.close()
         await GeneralPaginator(i, embeds).start(edit=True)
