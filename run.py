@@ -15,6 +15,13 @@ from dev.model import BotModel, translator
 
 load_dotenv()
 
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(asctime)s %(levelname)s %(message)s",
+    datefmt="%Y-%m-%d %H:%M:%S",
+    handlers=[logging.StreamHandler(), logging.FileHandler("log.log")],
+)
+
 
 class Layla(BotModel):
     def __init__(self, session: aiohttp.ClientSession):
