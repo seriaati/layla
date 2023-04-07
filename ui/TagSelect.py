@@ -15,6 +15,7 @@ class TagSelectView(BaseView):
 
         self.tags = tags
         self.selected_tags: typing.List[str] = []
+
         self.add_item(
             TagSelect(
                 tags["versatile"],
@@ -27,6 +28,7 @@ class TagSelectView(BaseView):
                 tags["nsfw"], translator.trans("Select nsfw tags...", locale), locale
             )
         )
+        self.add_item(SearchImage(translator.trans("Search", locale)))
 
 
 class TagSelect(discord.ui.Select):
