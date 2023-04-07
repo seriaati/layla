@@ -79,11 +79,11 @@ class HmtaiCog(commands.GroupCog, name="hmtai"):
             if current.lower() in tag.lower()
         ][:25]
 
-    @sfw.autocomplete("tag")
+    @sfw.autocomplete("endpoint")
     async def sfw_autocomplete(self, _: discord.Interaction, current: str):
         return await self.endpoint_autocomplete("sfw", current)
 
-    @nsfw.autocomplete("tag")
+    @nsfw.autocomplete("endpoint")
     async def nsfw_autocomplete(self, _: discord.Interaction, current: str):
         return await self.endpoint_autocomplete("nsfw", current)
 
