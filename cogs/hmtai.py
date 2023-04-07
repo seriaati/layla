@@ -32,6 +32,7 @@ class HmtaiCog(commands.GroupCog, name="hmtai"):
             return data["url"]
 
     async def run_command(self, i: discord.Interaction, endpoint: str, num: int):
+        await i.response.defer(ephemeral=True)
         embeds: typing.List[discord.Embed] = []
 
         for _ in range(num):
@@ -45,7 +46,7 @@ class HmtaiCog(commands.GroupCog, name="hmtai"):
                     ephemeral=True,
                 )
 
-        await GeneralPaginator(i, embeds).start(ephemeral=True)
+        await GeneralPaginator(i, embeds).start(ephemeral=True, followup=True)
 
     @app_commands.command(name="sfw", description=_T("Search sfw images by tags"))
     @app_commands.rename(endpoint=_T("tags"), num=_T("num"))
