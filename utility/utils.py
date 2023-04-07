@@ -17,6 +17,8 @@ def get_json(dir: str) -> typing.Dict[str, typing.Any]:
             return json.load(f)
     except FileNotFoundError:
         return {}
+    except json.JSONDecodeError:
+        return {}
 
 
 def get_yaml(dir: str) -> typing.Dict[str, typing.Any]:
@@ -24,4 +26,6 @@ def get_yaml(dir: str) -> typing.Dict[str, typing.Any]:
         with open(dir, "r", encoding="utf-8") as f:
             return yaml.load(f, Loader=yaml.FullLoader)  # type: ignore
     except FileNotFoundError:
+        return {}
+    except yaml.YAMLError:
         return {}
