@@ -1,7 +1,7 @@
 import typing
 
 import discord
-from waifuim import WaifuAioClient, types
+from waifuim import APIException, WaifuAioClient, types
 
 from dev.model import BaseView, DefaultEmbed, ErrorEmbed, Inter, translator
 from utility.paginator import GeneralPaginator
@@ -67,7 +67,15 @@ class SearchImage(discord.ui.Button):
         )
 
         wf = WaifuAioClient(session=i.client.session, app_name="Layla")
-        images = await wf.search(self.view.selected_tags, many=True)
+        try:
+            images = await wf.search(self.view.selected_tags, many=True)
+        except APIException:
+            return await i.response.edit_message(
+                embed=ErrorEmbed(
+                    translator.trans("API error", i.locale),
+                    translator.trans("Try changing the tags", i.locale),
+                )
+            )
         if isinstance(images, types.Image):
             images = [images]
         elif isinstance(images, dict):
@@ -81,4 +89,5 @@ class SearchImage(discord.ui.Button):
             embed.set_image(url=str(image))
             embeds.append(embed)
 
+        await wf.close()
         await GeneralPaginator(i, embeds).start(edit=True)
