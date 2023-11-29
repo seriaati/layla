@@ -3,7 +3,6 @@ import glob
 import logging
 import os
 import pathlib
-import platform
 import sys
 
 import aiohttp
@@ -43,12 +42,6 @@ class Layla(BotModel):
         logging.info("Loading cogs...")
         for file in glob.glob("cogs/*.py"):
             await self.load_extension(f"cogs.{pathlib.Path(file).stem}")
-
-
-if platform.system() == "Linux":
-    import uvloop  # type: ignore
-
-    uvloop.install()
 
 
 async def main() -> None:
