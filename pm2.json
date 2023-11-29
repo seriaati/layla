@@ -1,7 +1,9 @@
 {
-    "apps": [{
-        "name": "layla",
-        "script": "./run.py",
-        "interpreter": "python3.10"
-    }]
+    "apps": [
+        {
+            "name": "layla",
+            "script": "./run.py",
+            "interpreter": "./.venv/bin/python"
+        }
+    ]
 }
