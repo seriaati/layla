@@ -1,0 +1,21 @@
+[tool.poetry]
+name = "layla"
+version = "0.1.0"
+description = ""
+authors = ["seriaati <seria.ati@gmail.com>"]
+license = "MIT"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+aiohttp = "^3.9.1"
+discord-py = "^2.3.2"
+waifuim-py = "^4.2.4"
+python-dotenv = "^1.0.0"
+pyyaml = "^6.0.1"
+aiofiles = "^23.2.1"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
